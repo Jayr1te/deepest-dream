@@ -4,7 +4,7 @@
 // Incrementing CACHE_VERSION will kick off the install event and force
 // previously cached resources to be updated from the network.
 /** @type {string} */
-const CACHE_VERSION = '1760729026|3307572059';
+const CACHE_VERSION = '1760729239|3519792259';
 /** @type {string} */
 const CACHE_PREFIX = 'DeepestDream-sw-cache-';
 const CACHE_NAME = CACHE_PREFIX + CACHE_VERSION;
