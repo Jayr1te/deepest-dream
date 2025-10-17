@@ -1,13 +1,13 @@
 [gd_scene load_steps=5 format=3 uid="uid://dw3btfiredpt8"]
 
-[ext_resource type="Texture2D" uid="uid://1s6yaycnovqe" path="res://icons/oxygen.png" id="1_i8vhp"]
-[ext_resource type="Texture2D" uid="uid://bg8r0jrewlsyg" path="res://icons/placeholder.png" id="2_br8ut"]
+[ext_resource type="Texture2D" uid="uid://1s6yaycnovqe" path="res://icons/oxygen.png" id="1_ocwxm"]
+[ext_resource type="Texture2D" uid="uid://bg8r0jrewlsyg" path="res://icons/placeholder.png" id="2_1k4s6"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_br8ut"]
-texture = ExtResource("1_i8vhp")
+texture = ExtResource("1_ocwxm")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c8yi8"]
-texture = ExtResource("2_br8ut")
+texture = ExtResource("2_1k4s6")
 
 [node name="UpgradeList" type="Control"]
 layout_mode = 3

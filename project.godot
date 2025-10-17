@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Math="*res://math.gd"
+Math="*res://scripts/math.gd"
 Icon="*res://icon_manager.gd"
 
 [display]
