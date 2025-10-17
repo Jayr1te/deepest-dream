@@ -1,0 +1,75 @@
+[gd_scene load_steps=2 format=3 uid="uid://dlx6go55voqle"]
+
+[ext_resource type="Script" uid="uid://cu6yc8h8bde81" path="res://upgrade_button.gd" id="1_feo8w"]
+
+[node name="UpgradeButton" type="Button"]
+offset_right = 250.0
+offset_bottom = 100.0
+script = ExtResource("1_feo8w")
+cost = [5]
+costType = [2]
+name_ = "Deep Breath"
+desc = "Take a deep breath before diving."
+eff = "+ 5 Base [OXY]"
+
+[node name="Name" type="RichTextLabel" parent="."]
+clip_contents = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.04
+anchor_top = 0.04
+anchor_right = 0.04
+anchor_bottom = 0.04
+mouse_filter = 1
+bbcode_enabled = true
+text = "Deep Breath"
+fit_content = true
+autowrap_mode = 0
+
+[node name="Description" type="RichTextLabel" parent="."]
+clip_contents = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.04
+anchor_top = 0.3
+anchor_right = 0.04
+anchor_bottom = 0.3
+mouse_filter = 1
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "Take a deep breath before diving."
+fit_content = true
+autowrap_mode = 0
+
+[node name="Cost" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.7
+anchor_right = 1.0
+anchor_bottom = 0.7
+offset_left = -2.0
+offset_right = -2.0
+grow_horizontal = 0
+mouse_filter = 1
+bbcode_enabled = true
+fit_content = true
+autowrap_mode = 0
+
+[node name="Effect" type="RichTextLabel" parent="."]
+clip_contents = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.04
+anchor_top = 0.7
+anchor_right = 0.04
+anchor_bottom = 0.7
+offset_right = 150.0
+offset_bottom = 23.0
+mouse_filter = 1
+bbcode_enabled = true
+text = "+ 5 Base [OXY]"
+fit_content = true
+autowrap_mode = 0
+
+[connection signal="values_changed" from="." to="." method="_on_values_changed"]
