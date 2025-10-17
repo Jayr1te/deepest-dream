@@ -1,17 +1,14 @@
-@tool
 extends Button
-
-
 
 signal values_changed
 
-@export var cost : Array = [] :
+@export var cost : PackedInt64Array = [1] :
 	set(value): 
 		cost = value
 		values_changed.emit() 
-@export var costType : Array = [] :
+@export var costRes : PackedStringArray = ["oxy"] :
 	set(value): 
-		costType = value
+		costRes = value
 		values_changed.emit()
 @export var name_ : String :
 	set(value): 
@@ -25,11 +22,11 @@ signal values_changed
 	set(value): 
 		eff = value
 		values_changed.emit()
-@export var effType : Array = [] :
+@export var effRes : PackedStringArray = ["oxy"] :
 	set(value): 
-		effType = value
+		effRes = value
 		values_changed.emit()
-@export var effAmount : Array = [] :
+@export var effAmount : PackedInt64Array = [1] :
 	set(value): 
 		effAmount = value
 		values_changed.emit()
@@ -38,12 +35,12 @@ var eIcon
 
 func _ready() -> void:
 	
-	if Engine.is_editor_hint():
-		eIcon = Node.new()
-		eIcon.set_script(load("res://icon_manager.gd"))
-		add_child(eIcon)
-		editor_update()
-		return
+	#if Engine.is_editor_hint():
+	#	eIcon = Node.new()
+	#	eIcon.set_script(load("res://scripts/icon_manager.gd"))
+	#	add_child(eIcon)
+	#	editor_update()
+	#	return
 	
 	$Name.text = name_
 	$Description.text = desc
@@ -56,8 +53,26 @@ func _ready() -> void:
 	$Cost.clear()
 	for i in cost.size():
 		$Cost.append_text(str(cost[i]))
-		var type = costType[i]
+		var type = Icon.type[costRes[i]]
 		$Cost.add_image(Icon.icons[type],25,25,Icon.colors[type],5,Rect2(),null)
+
+func _physics_process(delta: float) -> void:
+	
+	disabled = false
+	for i in cost.size():
+		if Res.get(costRes[i]) < cost[i]:
+			disabled = true
+	
+	if disabled:
+		$Name.modulate = Color(1.0, 1.0, 1.0, 0.500)
+		$Description.modulate = Color(1.0, 1.0, 1.0, 0.500)
+		$Cost.modulate = Color(1.0, 1.0, 1.0, 0.500)
+		$Effect.modulate = Color(1.0, 1.0, 1.0, 0.500)
+	else:
+		$Name.modulate = Color(1.0, 1.0, 1.0, 1.0)
+		$Description.modulate = Color(1.0, 1.0, 1.0, 1.0)
+		$Cost.modulate = Color(1.0, 1.0, 1.0, 1.0)
+		$Effect.modulate = Color(1.0, 1.0, 1.0, 1.0)
 
 func iconify(label : RichTextLabel):
 	var textArray = label.text.split(" ")
@@ -85,7 +100,8 @@ func editor_update():
 	$Cost.clear()
 	for i in cost.size():
 		$Cost.append_text(str(cost[i]))
-		$Cost.add_image(get_child(4).icons[costType[i]],25,25,get_child(4).colors[costType[i]],5,Rect2(),null)
+		var type = get_child(4).type[costRes[i]]
+		$Cost.add_image(get_child(4).icons[type],25,25,get_child(4).colors[type],5,Rect2(),null)
 
 func eIconify(label : RichTextLabel):
 	var textArray = label.text.split(" ")
@@ -102,4 +118,12 @@ func eIconify(label : RichTextLabel):
 			label.append_text(s + " ")
 
 func _on_values_changed() -> void:
-	editor_update()
+	#editor_update()
+	pass
+
+
+func _on_pressed() -> void:
+	for i in effRes.size():
+		Res.set(effRes[i],Res.get(effRes[i]) + effAmount[i])
+	for j in costRes.size():
+		Res.set(costRes[j],Res.get(costRes[j]) - cost[j])

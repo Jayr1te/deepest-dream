@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://c18pw5n2qt187"]
+[gd_scene load_steps=10 format=3 uid="uid://c18pw5n2qt187"]
 
 [ext_resource type="Script" uid="uid://dbco26eokfq5p" path="res://scripts/main.gd" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://1s6yaycnovqe" path="res://icons/oxygen.png" id="2_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://bg8r0jrewlsyg" path="res://icons/placeholder.png" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://dlx6go55voqle" path="res://scenes/upgrade_button.tscn" id="4_jyhfs"]
 
 [sub_resource type="SystemFont" id="SystemFont_ig7tw"]
+subpixel_positioning = 0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ig7tw"]
 bg_color = Color(0.115, 0.18400002, 0.46, 1)
@@ -37,7 +39,7 @@ grow_vertical = 2
 color = Color(0.050980393, 0.09411765, 0.2, 1)
 
 [node name="Copyright" type="RichTextLabel" parent="CanvasLayer"]
-anchors_preset = -1
+anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 10.0
@@ -51,7 +53,7 @@ fit_content = true
 autowrap_mode = 0
 
 [node name="Version" type="RichTextLabel" parent="CanvasLayer"]
-anchors_preset = -1
+anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -68,7 +70,7 @@ fit_content = true
 autowrap_mode = 0
 
 [node name="Source" type="RichTextLabel" parent="CanvasLayer"]
-anchors_preset = -1
+anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -213,6 +215,32 @@ bbcode_enabled = true
 text = "Next at 5m"
 fit_content = true
 autowrap_mode = 0
+
+[node name="UpgradeButton" parent="CanvasLayer" instance=ExtResource("4_jyhfs")]
+offset_left = 89.0
+offset_top = 277.0
+offset_right = 339.0
+offset_bottom = 377.0
+cost = [5]
+costRes = ["mem"]
+name_ = "Deep Breath"
+desc = "Take a deep breath before diving."
+eff = "+ 5 Max [oxy]"
+effRes = ["oxyMax"]
+effAmount = [5]
+
+[node name="UpgradeButton2" parent="CanvasLayer" instance=ExtResource("4_jyhfs")]
+offset_left = 89.0
+offset_top = 390.0
+offset_right = 339.0
+offset_bottom = 490.0
+cost = [5]
+costRes = ["mem"]
+name_ = "Improved Technique"
+desc = "Remember a faster swimming method."
+eff = "+ 1 [swimSpeed]"
+effRes = ["swimSpeed"]
+effAmount = [1]
 
 [connection signal="meta_clicked" from="CanvasLayer/Source" to="." method="_on_source_meta_clicked"]
 [connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]
