@@ -79,3 +79,7 @@ func _physics_process(delta: float) -> void:
 func _on_button_pressed() -> void:
 	diving = true
 	memThres = 5
+
+
+func _on_source_meta_clicked(meta: Variant) -> void:
+	OS.shell_open("https://github.com/Jayr1te/deepest-dream")
